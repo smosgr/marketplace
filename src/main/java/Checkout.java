@@ -3,16 +3,13 @@ import java.util.List;
 
 public class Checkout {
 
-    private PromotionRules promotionRules;
+    List<Item> items = new ArrayList<>();
 
     Checkout(PromotionRules promotionRules) {
-        this.promotionRules = promotionRules;
     }
 
     Checkout() {
     }
-
-    List<Item> items = new ArrayList<>();
 
     public void scan(Item item) {
         items.add(item);

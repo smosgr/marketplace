@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class CheckoutTest {
 
     /*
@@ -12,7 +14,15 @@ public class CheckoutTest {
      */
 
     @Test
-    public void test() {
-        assert true;
+    public void whenSingleItemIsScannedTotalIsUpdated() {
+
+        Checkout checkout = new Checkout();
+        Item item = new Item("001", "Travel Card Holder", 9.25);
+        checkout.scan(item);
+
+        double total = checkout.calculateTotal();
+
+        assertEquals(0.0, total, 0.0);
+
     }
 }

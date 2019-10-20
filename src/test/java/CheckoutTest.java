@@ -14,15 +14,12 @@ public class CheckoutTest {
      */
 
     @Test
-    public void whenSingleItemIsScannedTotalIsUpdated() {
+    public void whenSingleItemIsScannedTotalPriceIsUpdated() {
 
         Checkout checkout = new Checkout();
         Item item = new Item("001", "Travel Card Holder", 9.25);
         checkout.scan(item);
-
         double total = checkout.calculateTotal();
-
-        assertEquals(0.0, total, 0.0);
-
+        assertEquals("", 9.25, total, 1);
     }
 }

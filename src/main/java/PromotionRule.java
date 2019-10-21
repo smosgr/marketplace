@@ -1,9 +1,9 @@
-public class PromotionRules {
+public class PromotionRule {
 
     private String offerType;
     private double percentage;
 
-    public PromotionRules(String offerType, double percentage) {
+    public PromotionRule(String offerType, double percentage) {
         this.offerType = offerType;
         this.percentage = percentage;
     }

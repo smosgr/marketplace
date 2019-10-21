@@ -99,6 +99,6 @@ public class CheckoutTest {
         //when
         Double total = checkout.calculateTotal();
         //then
-        assertEquals("Total cost of 3 travel card holders with discount", 17, total, 0);
+        assertEquals("Total cost of 2 travel card holders with discount", 17, total, 0);
     }
 }

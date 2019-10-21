@@ -35,8 +35,28 @@ public class Checkout {
 
         if (promotion.getDiscount().toString().equals("Amount")) {
             total = applyDiscount(total, promotion);
+        } else if (promotion.getDiscount().toString().equals("Item")) {
+
+            long count = getProductCodeCount(promotion);
+
+            if (count >= promotion.getItemsNumber()) {
+                System.out.println("-----------------------");
+
+                //item price drops to 8.5
+                // for each item with code = 001
+                // update item price to 8.5
+                // calculate total again!
+
+            }
         }
         return total;
+    }
+
+    private long getProductCodeCount(PromotionRule promotion) {
+        return items.stream()
+                .map(items -> items.productCode)
+                .filter(items -> items.equals(promotion.getProductCode()))
+                .count();
     }
 
     private double applyDiscount(double total, PromotionRule promotion) {

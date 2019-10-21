@@ -76,4 +76,27 @@ public class CheckoutTest {
         assertEquals("Total cost of 1 travel card holder, 1" +
                 " pair of personalised cufflinks and 1 kids t-shirt with 10% off discount: ", 66.78, total, 0);
     }
+
+    @Test
+    public void checkoutTwoItemsTheItemPriceGetsReduced() {
+
+        //given
+        Item item1 = new Item("001", "Travel Card Holder", 9.25);
+        Item item2 = new Item("002", "Personalised cufflinks", 45.00);
+
+        List<PromotionRule> promos = new ArrayList<>();
+        PromotionRule promotionRule = new PromotionRule(PromotionRule.DiscountType.Item, 8.5, 2, "001");
+        promos.add(promotionRule);
+
+        Checkout checkout = new Checkout(promos);
+
+        checkout.scan(item1);
+        checkout.scan(item1);
+
+        //when
+        Double total = checkout.calculateTotal();
+
+        //then
+        assertEquals("Total cost of 2 travel card holders with discount", 66.78, total, 0);
+    }
 }

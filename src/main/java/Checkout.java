@@ -19,18 +19,22 @@ public class Checkout {
 
     public Double calculateTotal() {
 
-
         double total = items.stream()
                 .map(Item::getPrice)
                 .mapToDouble(Double::doubleValue)
                 .sum();
 
         if (promos.size() > 0) {
-            PromotionRule promotion = promos.get(0);
-            if (promotion.getDiscount().toString().equals("Amount")) {
+            total = getTotalWithDiscount(total);
+        }
+        return total;
+    }
 
-                total = applyDiscount(total, promotion);
-            }
+    private double getTotalWithDiscount(double total) {
+        PromotionRule promotion = promos.get(0);
+
+        if (promotion.getDiscount().toString().equals("Amount")) {
+            total = applyDiscount(total, promotion);
         }
         return total;
     }

@@ -1,7 +1,7 @@
 public class PromotionRule {
 
     private double threshold;
-    private double percentageApplied;
+    private double discountValue;
     private int itemsNumber;
     private DiscountType discount;
 
@@ -9,16 +9,14 @@ public class PromotionRule {
 
     enum DiscountType {
         Amount, Item;
-
-
     }
-    public PromotionRule(DiscountType discountType, double percentageApplied, double threshold) {
-        this.percentageApplied = percentageApplied;
+    public PromotionRule(DiscountType discountType, double discountValue, double threshold) {
+        this.discountValue = discountValue;
         this.threshold = threshold;
         this.discount = discountType;
     }
-    public PromotionRule(DiscountType discountType, double percentageApplied, int itemsNumber, String productCode) {
-        this.percentageApplied = percentageApplied;
+    public PromotionRule(DiscountType discountType, double discountValue, int itemsNumber, String productCode) {
+        this.discountValue = discountValue;
         this.itemsNumber = itemsNumber;
         this.discount = discountType;
         this.productCode = productCode;
@@ -28,8 +26,8 @@ public class PromotionRule {
         return discount;
     }
 
-    public double getPercentageApplied() {
-        return percentageApplied;
+    public double getDiscountValue() {
+        return discountValue;
     }
 
     public double getThreshold() {

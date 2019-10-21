@@ -19,10 +19,7 @@ public class Checkout {
 
     public Double calculateTotal() {
 
-        double total = items.stream()
-                .map(Item::getPrice)
-                .mapToDouble(Double::doubleValue)
-                .sum();
+        double total = getSum();
 
         if (promos.size() > 0) {
             total = getTotalWithDiscount(total);
@@ -30,24 +27,46 @@ public class Checkout {
         return total;
     }
 
+    private double getSum() {
+        return items.stream()
+                .map(Item::getPrice)
+                .mapToDouble(Double::doubleValue)
+                .sum();
+    }
+
     private double getTotalWithDiscount(double total) {
         PromotionRule promotion = promos.get(0);
 
         if (promotion.getDiscount().toString().equals("Amount")) {
+
             total = applyDiscount(total, promotion);
         } else if (promotion.getDiscount().toString().equals("Item")) {
 
-            long count = getProductCodeCount(promotion);
+            applyDiscount(promotion);
+            total = getSum();
+        }
 
-            if (count >= promotion.getItemsNumber()) {
-                System.out.println("-----------------------");
+        return total;
+    }
 
-                //item price drops to 8.5
-                // for each item with code = 001
-                // update item price to 8.5
-                // calculate total again!
+    private void applyDiscount(PromotionRule promotion) {
+        long productCodeCount = getProductCodeCount(promotion);
 
+        if (productCodeCount >= promotion.getItemsNumber()) {
+
+            for (Item item : items) {
+
+                if (item.getProductCode().equals(promotion.getProductCode())) {
+                    item.setPrice(promotion.getDiscountValue());
+                }
             }
+
+        }
+    }
+
+    private double applyDiscount(double total, PromotionRule promotion) {
+        if (total > promotion.getThreshold()) {
+            total -= (total * promotion.getDiscountValue()) / 100;
         }
         return total;
     }
@@ -57,13 +76,6 @@ public class Checkout {
                 .map(items -> items.productCode)
                 .filter(items -> items.equals(promotion.getProductCode()))
                 .count();
-    }
-
-    private double applyDiscount(double total, PromotionRule promotion) {
-        if (total > promotion.getThreshold()) {
-            total -= (total * promotion.getPercentageApplied()) / 100;
-        }
-        return total;
     }
 }
 

@@ -13,4 +13,12 @@ public class Item {
     public Double getPrice() {
         return price;
     }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
 }

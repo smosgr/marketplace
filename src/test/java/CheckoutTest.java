@@ -1,6 +1,8 @@
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class CheckoutTest {
@@ -9,7 +11,7 @@ public class CheckoutTest {
      *
      * X - 1. Checkout single product
      * X - 2. Checkout 001, 002, 003
-     * 3. Checkout 002, 003 and apply promotion (over £60)
+     * X - 3. Checkout 002, 003 and apply promotion (over £60)
      * 4. Checkout 001, 001 and apply promotion (2-4-minus10%)
      * X - 5. Checkout no product, total = 0
      *
@@ -20,7 +22,6 @@ public class CheckoutTest {
 
         Checkout checkout = new Checkout();
         double total = checkout.calculateTotal();
-        System.out.println(total);
         assertEquals("Total cost of no items is zero", 0, total, 0);
     }
 
@@ -31,7 +32,6 @@ public class CheckoutTest {
         Item item = new Item("001", "Travel Card Holder", 9.25);
         checkout.scan(item);
         double total = checkout.calculateTotal();
-        System.out.println(total);
         assertEquals("Total cost of 1 travel card holder: ", 9.25, total, 0);
     }
 
@@ -60,7 +60,7 @@ public class CheckoutTest {
         Item item3 = new Item("003", "Kids T-shirt", 19.95);
 
         List<PromotionRule> promos = new ArrayList<>();
-        PromotionRule promotionRule = new PromotionRule("discount", 10);
+        PromotionRule promotionRule = new PromotionRule(PromotionRule.DiscountType.Amount, 10.00, 60.00);
         promos.add(promotionRule);
 
         Checkout checkout = new Checkout(promos);
@@ -71,7 +71,6 @@ public class CheckoutTest {
 
         //when
         Double total = checkout.calculateTotal();
-        System.out.println(total);
 
         //then
         assertEquals("Total cost of 1 travel card holder, 1" +

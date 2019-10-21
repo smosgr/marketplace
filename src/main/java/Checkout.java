@@ -9,22 +9,37 @@ public class Checkout {
     Checkout() {
     }
 
-    public Checkout(List<PromotionRule> promotionRules) {
-        this.promos = promotionRules;
-        System.out.println(promos.get(0));
-
+    public Checkout(List<PromotionRule> promos) {
+        this.promos = promos;
     }
-
 
     public void scan(Item item) {
         items.add(item);
     }
 
     public Double calculateTotal() {
-        return items.stream()
+
+
+        double total = items.stream()
                 .map(Item::getPrice)
                 .mapToDouble(Double::doubleValue)
                 .sum();
+
+        if (promos.size() > 0) {
+            PromotionRule promotion = promos.get(0);
+            if (promotion.getDiscount().toString().equals("Amount")) {
+
+                total = applyDiscount(total, promotion);
+            }
+        }
+        return total;
+    }
+
+    private double applyDiscount(double total, PromotionRule promotion) {
+        if (total > promotion.getThreshold()) {
+            total -= (total * promotion.getPercentageApplied()) / 100;
+        }
+        return total;
     }
 }
 

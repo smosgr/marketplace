@@ -67,7 +67,7 @@ public class CheckoutTest {
         //when
         Double total = checkout.calculateTotal();
         //then
-        assertEquals("Total cost of 1 travel card holder, 1 pair of personalised cufflinks and 1 kids t-shirt: ", 74.20, total, 0);
+        assertEquals("Total cost of 1 travel card holder, 1 pair of personalised cufflinks and 1 kids t-shirt: ", 74.21, total, 0);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class CheckoutTest {
 
         //then
         assertEquals("Total cost of 1 travel card holder, 1" +
-                " pair of personalised cufflinks and 1 kids t-shirt with 10% off discount: ", 66.78, total, 0);
+                " pair of personalised cufflinks and 1 kids t-shirt with 10% off discount: ", 66.79, total, 0);
     }
 
     @Test
@@ -114,6 +114,23 @@ public class CheckoutTest {
         Double total = checkout.calculateTotal();
 
         //then
-        assertEquals("", 73.76, total, 0.4);
+        assertEquals("", 73.76, total, 0);
+    }
+
+    @Test
+    public void checkoutSeveralItemsAndBothPromotionsAreApplied_rounded() {
+
+        //given
+        promos.add(promotionOnItem);
+        promos.add(promotionAbove60);
+        checkout.scan(item1);
+        checkout.scan(item2);
+        checkout.scan(item1);
+        checkout.scan(item3);
+        //when
+        Double total = checkout.calculateTotal();
+
+        //then
+        assertEquals("", 73.76, total, 0);
     }
 }

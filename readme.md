@@ -7,3 +7,4 @@ Notes
 - no unused methods
 - inheritance vs overloaded constructors
 - clean test class to be able to use as documentation
+- separation of concerns

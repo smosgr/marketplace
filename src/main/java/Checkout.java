@@ -1,4 +1,7 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Checkout {
@@ -21,7 +24,10 @@ public class Checkout {
         if (promos.size() > 0) {
             total = getTotalWithDiscount(total);
         }
-        return total;
+
+        Double roundedTotal = new BigDecimal(total).setScale(2, RoundingMode.CEILING).doubleValue();
+
+        return roundedTotal;
     }
 
     private Double getSum() {
@@ -29,6 +35,13 @@ public class Checkout {
                 .map(Item::getPrice)
                 .mapToDouble(Double::doubleValue)
                 .sum();
+    }
+
+    public String listItems() {
+
+
+
+        return Arrays.toString(items.toArray());
     }
 
     private Double getTotalWithDiscount(Double total) {

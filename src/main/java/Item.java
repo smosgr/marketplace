@@ -21,4 +21,9 @@ public class Item {
     public String getProductCode() {
         return productCode;
     }
+
+    @Override
+    public String toString() {
+        return productCode;
+    }
 }

@@ -24,6 +24,6 @@ public class App {
         String items = co.listItems();
 
         CheckoutPrinter cp = new CheckoutPrinter();
-        cp.print(price.toString(), items);
+        System.out.println(cp.print(price.toString(), items));
     }
 }

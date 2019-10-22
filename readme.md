@@ -1,4 +1,4 @@
-### **Notes**
+### -> Notes
 
 - double / Double / BigDecimal:
 
@@ -27,3 +27,21 @@ PromotionRule<-AmountPromotionRule``
 - Separation of concerns:
 
 ``I have tried to organise the functionality as much as possible in order to avoid unreadable code and also aim for extendable code.``
+
+
+### -> Running
+
+Build and run tests with : `./gradlew clean build`
+Run tests only with : `./gradlew test`
+
+Run with : `./gradlew run`
+
+
+### -> Technologies/Tool
+
+- IntelliJ IDEA 
+- openJDK 12 (compatible with Java8 and upwards)
+- Gradle
+- JUnit 4.12
+- Git
+

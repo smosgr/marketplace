@@ -4,10 +4,7 @@ import java.util.List;
 public class Checkout {
 
     List<Item> items = new ArrayList<>();
-    List<PromotionRule> promos = new ArrayList<>();
-
-    Checkout() {
-    }
+    List<PromotionRule> promos;
 
     public Checkout(List<PromotionRule> promos) {
         this.promos = promos;
@@ -19,7 +16,7 @@ public class Checkout {
 
     public Double calculateTotal() {
 
-        double total = getSum();
+        Double total = getSum();
 
         if (promos.size() > 0) {
             total = getTotalWithDiscount(total);
@@ -27,23 +24,25 @@ public class Checkout {
         return total;
     }
 
-    private double getSum() {
+    private Double getSum() {
         return items.stream()
                 .map(Item::getPrice)
                 .mapToDouble(Double::doubleValue)
                 .sum();
     }
 
-    private double getTotalWithDiscount(double total) {
-        PromotionRule promotion = promos.get(0);
+    private Double getTotalWithDiscount(Double total) {
 
-        if (promotion.getDiscount().toString().equals("Amount")) {
+        for (PromotionRule promotionRule : promos) {
 
-            total = applyDiscount(total, promotion);
-        } else if (promotion.getDiscount().toString().equals("Item")) {
+            if (promotionRule.getDiscount().toString().equals("Amount")) {
 
-            applyDiscount(promotion);
-            total = getSum();
+                total = applyDiscount(total, promotionRule);
+            } else if (promotionRule.getDiscount().toString().equals("Item")) {
+
+                applyDiscount(promotionRule);
+                total = getSum();
+            }
         }
 
         return total;
@@ -64,7 +63,7 @@ public class Checkout {
         }
     }
 
-    private double applyDiscount(double total, PromotionRule promotion) {
+    private Double applyDiscount(Double total, PromotionRule promotion) {
         if (total > promotion.getThreshold()) {
             total -= (total * promotion.getDiscountValue()) / 100;
         }
@@ -78,8 +77,3 @@ public class Checkout {
                 .count();
     }
 }
-
-
-
-
-

@@ -1,21 +1,19 @@
 public class PromotionRule {
 
-    private double threshold;
-    private double discountValue;
+    private Double threshold;
+    private Double discountValue;
     private int itemsNumber;
     private DiscountType discount;
 
     private String productCode;
 
-    enum DiscountType {
-        Amount, Item;
-    }
-    public PromotionRule(DiscountType discountType, double discountValue, double threshold) {
+    public PromotionRule(DiscountType discountType, Double discountValue, Double threshold) {
         this.discountValue = discountValue;
         this.threshold = threshold;
         this.discount = discountType;
     }
-    public PromotionRule(DiscountType discountType, double discountValue, int itemsNumber, String productCode) {
+
+    public PromotionRule(DiscountType discountType, Double discountValue, int itemsNumber, String productCode) {
         this.discountValue = discountValue;
         this.itemsNumber = itemsNumber;
         this.discount = discountType;
@@ -26,11 +24,11 @@ public class PromotionRule {
         return discount;
     }
 
-    public double getDiscountValue() {
+    public Double getDiscountValue() {
         return discountValue;
     }
 
-    public double getThreshold() {
+    public Double getThreshold() {
         return threshold;
     }
 
@@ -40,5 +38,9 @@ public class PromotionRule {
 
     public String getProductCode() {
         return productCode;
+    }
+
+    enum DiscountType {
+        Amount, Item;
     }
 }

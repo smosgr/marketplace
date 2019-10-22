@@ -116,21 +116,4 @@ public class CheckoutTest {
         //then
         assertEquals("", 73.76, total, 0);
     }
-
-    @Test
-    public void checkoutSeveralItemsAndBothPromotionsAreApplied_rounded() {
-
-        //given
-        promos.add(promotionOnItem);
-        promos.add(promotionAbove60);
-        checkout.scan(item1);
-        checkout.scan(item2);
-        checkout.scan(item1);
-        checkout.scan(item3);
-        //when
-        Double total = checkout.calculateTotal();
-
-        //then
-        assertEquals("", 73.76, total, 0);
-    }
 }

@@ -1,3 +1,10 @@
+## Description
+
+Supermarket kata written as part of an interview process, following TDD and using the technologies I mention in the `Technologies/Tools` section. 
+See `requirements.md` for requirements.
+
+
+
 ### -> Notes
 
 - double / Double / BigDecimal:
@@ -31,17 +38,25 @@ PromotionRule<-AmountPromotionRule``
 
 ### -> Running
 
-Build and run tests with : `./gradlew clean build`
-Run tests only with : `./gradlew test`
+1. Build: 
+```
+- gradle wrapper --gradle-version 5.1
+- ./gradlew clean build
+- ./gradlew test (optional)
+```
 
-Run with : `./gradlew run`
+
+2. Run: 
+```
+./gradlew run`
+```
 
 
 ### -> Technologies/Tool
-
+```
 - IntelliJ IDEA 
 - openJDK 12 (compatible with Java8 and upwards)
 - Gradle
 - JUnit 4.12
 - Git
-
+```

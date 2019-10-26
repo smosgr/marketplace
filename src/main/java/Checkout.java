@@ -1,5 +1,3 @@
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +23,7 @@ public class Checkout {
             total = getTotalWithDiscount(total);
         }
 
-        Double roundedTotal = new BigDecimal(total).setScale(2, RoundingMode.CEILING).doubleValue();
+        Double roundedTotal = new Utils().roundTotalToCeiling(total);
 
         return roundedTotal;
     }
@@ -38,7 +36,6 @@ public class Checkout {
     }
 
     public String listItems() {
-
 
 
         return Arrays.toString(items.toArray());

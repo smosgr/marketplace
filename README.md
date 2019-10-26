@@ -1,6 +1,6 @@
 ## Description
 
-Marketplace was written part of an interview process, following TDD and using the technologies I mention in the `Technologies/Tools` section. 
+Marketplace (aka supermarket-kata) was written part of an interview process, following TDD and using the technologies I mention in the `Technologies/Tools` section. 
 See `requirements.md` for requirements.
 
 
